@@ -8,8 +8,8 @@ namespace WPFOxyPlotFody
     //[ImplementPropertyChanged]
     class ViewModel
     {
-        double a = -1;
-        double b = 1;
+        double a = 1;
+        double b = 10;
         double c = 1;
 
         public Collection<CollectionDataValue> Data { get; set; }
@@ -24,11 +24,12 @@ namespace WPFOxyPlotFody
 
         public ViewModel()
         {
-            PlotTitle = "y(x)=" + a.ToString() + "x²" + b.ToString("+#;-#") + "x" + c.ToString("+#;-#");    //http://stackoverflow.com/questions/348201/custom-numeric-format-string-to-always-display-the-sign
+            PlotTitle = "y(x)=" + a.ToString() + "x²" + b.ToString("+#;-#") + "x" + c.ToString("+#;-#");    
+            //http://stackoverflow.com/questions/348201/custom-numeric-format-string-to-always-display-the-sign
             Data = new Collection<CollectionDataValue>();
             //DrawingCollecionFunction();
-            DrawingCollecionLambdaExpression();
-            //DrawingCollecionLambdaExpressionWithAllCoefficients();
+            //DrawingCollecionLambdaExpression();
+            DrawingCollecionLambdaExpressionWithAllCoefficients();
         }
 
         public double GetFunctionValue(double a, double b, double c, double x)
@@ -49,10 +50,10 @@ namespace WPFOxyPlotFody
             return y;
         }
 
-        Func<double, double> y = x => x * x;//Func<double, double> y(name) = x(function argument) => x * x(returned value)
+        //Func<double, double> y = x => x * x;//Func<double, double> y(name) = x(function argument) => x * x(returned value)
                                             //GetFunctionValue and y lambda are equivalent
 
-        //Func<double, double, double, double, double> y = (a, b, c, x) => a * x * x + b * x + c; //all coefficients
+        Func<double, double, double, double, double> y = (a, b, c, x) => a * x * x + b * x + c; //all coefficients
 
         void DrawingCollecionFunction()
         {
@@ -62,20 +63,20 @@ namespace WPFOxyPlotFody
             }
         }
 
-        void DrawingCollecionLambdaExpression()
+        //void DrawingCollecionLambdaExpression()
+        //{
+        //    for (double x = -10; x <= 10; x += 0.1)
+        //    {
+        //        Data.Add(new CollectionDataValue { xData = x, yData = y(x) });
+        //    }
+        //}
+
+        void DrawingCollecionLambdaExpressionWithAllCoefficients()
         {
             for (double x = -10; x <= 10; x += 0.1)
             {
-                Data.Add(new CollectionDataValue { xData = x, yData = y(x) });
+                Data.Add(new CollectionDataValue { xData = x, yData = y(a, b, c, x) });
             }
         }
-
-        //void DrawingCollecionLambdaExpressionWithAllCoefficients()
-        //{
-        //    for (double x = -10; x <= 10; x+=0.1)
-        //    {
-        //        Data.Add(new CollectionDataValue { xData = x, yData = y(-1, 1, 1, x) });
-        //    }
-        //}
     }
 }
