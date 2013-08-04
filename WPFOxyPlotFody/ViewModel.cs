@@ -8,6 +8,10 @@ namespace WPFOxyPlotFody
     //[ImplementPropertyChanged]
     class ViewModel
     {
+        double a = -1;
+        double b = 1;
+        double c = 1;
+
         public Collection<CollectionDataValue> Data { get; set; }
 
         public class CollectionDataValue
@@ -20,7 +24,7 @@ namespace WPFOxyPlotFody
 
         public ViewModel()
         {
-            PlotTitle = "y(x)=x²";
+            PlotTitle = "y(x)=" + a.ToString() + "x²" + b.ToString("+#;-#") + "x" + c.ToString("+#;-#");    //http://stackoverflow.com/questions/348201/custom-numeric-format-string-to-always-display-the-sign
             Data = new Collection<CollectionDataValue>();
             //DrawingCollecionFunction();
             DrawingCollecionLambdaExpression();
