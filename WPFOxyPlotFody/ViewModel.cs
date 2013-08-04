@@ -5,10 +5,9 @@ using System.Windows.Threading;
 
 namespace WPFOxyPlotFody
 {
-    [ImplementPropertyChanged]
+    //[ImplementPropertyChanged]
     class ViewModel
     {
-        Random rand = new Random();
         public Collection<CollectionDataValue> Data { get; set; }
 
         public class CollectionDataValue
@@ -17,13 +16,9 @@ namespace WPFOxyPlotFody
             public double yData { get; set; }
         }
 
-        public double RandomNumberValue { get; set; }
-        public double ExampleValue { get; set; }
-
         public ViewModel()
         {
             Data = new Collection<CollectionDataValue>();
-            ExampleValue = 0;
             DrawingCollecion();
         }
 
