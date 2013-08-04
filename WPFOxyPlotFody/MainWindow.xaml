@@ -10,7 +10,7 @@
     </Window.DataContext>
     <Grid>
         <oxy:Plot x:Name="plot1"
-                  Title="Function Plot"
+                  Title="{Binding PlotTitle, Mode=OneWay}"
                   Margin="10">
             <oxy:Plot.Axes>
                 <oxy:LinearAxis Title="x"

@@ -16,8 +16,11 @@ namespace WPFOxyPlotFody
             public double yData { get; set; }
         }
 
+        public string PlotTitle { get; set; }
+
         public ViewModel()
         {
+            PlotTitle = "y(x)=x²";
             Data = new Collection<CollectionDataValue>();
             //DrawingCollecionFunction();
             DrawingCollecionLambdaExpression();
