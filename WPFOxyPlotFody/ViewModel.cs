@@ -45,7 +45,7 @@ namespace WPFOxyPlotFody
         Func<double, double> y = x => x * x;//Func<double, double> y(name) = x(function argument) => x * x(returned value)
                                             //GetFunctionValue and y lambda are equivalent
 
-        //Func<double, double, double, double, double> y = (a, b, c, x) => a * x * x + b * x + c;
+        //Func<double, double, double, double, double> y = (a, b, c, x) => a * x * x + b * x + c; //all coefficients
 
         void DrawingCollecionFunction()
         {
