@@ -19,7 +19,9 @@ namespace WPFOxyPlotFody
         public ViewModel()
         {
             Data = new Collection<CollectionDataValue>();
-            DrawingCollecion();
+            //DrawingCollecionFunction();
+            DrawingCollecionLambdaExpression();
+            //DrawingCollecionLambdaExpressionWithAllCoefficients();
         }
 
         public double GetFunctionValue(double a, double b, double c, double x)
@@ -40,12 +42,33 @@ namespace WPFOxyPlotFody
             return y;
         }
 
-        void DrawingCollecion()
+        Func<double, double> y = x => x * x;//Func<double, double> y(name) = x(function argument) => x * x(returned value)
+                                            //GetFunctionValue and y lambda are equivalent
+
+        //Func<double, double, double, double, double> y = (a, b, c, x) => a * x * x + b * x + c;
+
+        void DrawingCollecionFunction()
         {
-            for (double i = -10; i <= 10; i+=0.1)
+            for (double x = -10; x <= 10; x += 0.1)
             {
-                Data.Add(new CollectionDataValue { xData = i, yData = GetFunctionValue(i) });
+                Data.Add(new CollectionDataValue { xData = x, yData = GetFunctionValue(x) });
             }
         }
+
+        void DrawingCollecionLambdaExpression()
+        {
+            for (double x = -10; x <= 10; x += 0.1)
+            {
+                Data.Add(new CollectionDataValue { xData = x, yData = y(x) });
+            }
+        }
+
+        //void DrawingCollecionLambdaExpressionWithAllCoefficients()
+        //{
+        //    for (double x = -10; x <= 10; x+=0.1)
+        //    {
+        //        Data.Add(new CollectionDataValue { xData = x, yData = y(-1, 1, 1, x) });
+        //    }
+        //}
     }
 }
