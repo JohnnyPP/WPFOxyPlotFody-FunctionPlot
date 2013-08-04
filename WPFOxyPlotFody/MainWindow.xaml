@@ -1,0 +1,41 @@
+﻿<Window x:Class="WPFOxyPlotFody.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WPFOxyPlotFody"
+        xmlns:oxy="clr-namespace:OxyPlot.Wpf;assembly=OxyPlot.Wpf"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <!-- Declaratively create an instance of our ViewModel -->
+        <local:ViewModel />
+    </Window.DataContext>
+    <Grid>
+        <oxy:Plot x:Name="plot1"
+                  Title="Function Plot"
+                  Margin="10">
+            <oxy:Plot.Axes>
+                <oxy:LinearAxis Title="x"
+                                Position="Bottom"
+                                MajorGridlineStyle="Solid"
+                                MinorGridlineStyle="Solid"
+                                MinimumPadding="0"
+                                MaximumPadding="0"/>
+                <oxy:LinearAxis Title="f(x)"
+                                Position="Left"
+                                MajorGridlineStyle="Solid"
+                                MinorGridlineStyle="Solid"
+                                FontSize="12"
+                                TicklineColor="#FF190000"
+                                TickStyle="Outside" />
+            </oxy:Plot.Axes>
+            <oxy:Plot.Series>
+                <oxy:LineSeries
+                    ItemsSource="{Binding Data, Mode=OneWay}"
+                    DataFieldX="xData"
+                    DataFieldY="yData"
+                    MarkerSize="3"
+                    MarkerType="Plus"
+                    />
+            </oxy:Plot.Series>
+        </oxy:Plot>
+    </Grid>
+</Window>
